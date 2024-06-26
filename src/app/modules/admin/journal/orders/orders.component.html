@@ -1,0 +1,208 @@
+<div class="relative flex flex-col flex-auto overflow-hidden">
+    <div class="flex flex-row flex-wrap">
+        <div class="sm:col-span-6 flex flex-col flex-auto overflow-hidden" *ngIf="orders.length > 0">
+            <div class="flex flex-col flex-auto mt-2 overflow-x-auto">
+                <table #table class="min-w-240 overflow-y-visible" mat-table [dataSource]="orders">
+
+                    <ng-container matColumnDef="scriptName">
+                        <th mat-header-cell *matHeaderCellDef>
+                            Script Name
+                        </th>
+                        <td mat-cell *matCellDef="let trade">
+                            <span class="flex items-center">
+                                <span class="leading-4">{{trade._trading_symbol}}</span>
+                            </span>
+                        </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="type">
+                        <th mat-header-cell *matHeaderCellDef>
+                            Type
+                        </th>
+                        <td mat-cell *matCellDef="let trade">
+                            <span class="flex items-center">
+                                <span class="leading-4">{{trade._transaction_type}}</span>
+                            </span>
+                        </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="qty">
+                        <th mat-header-cell *matHeaderCellDef>
+                            Quantity
+                        </th>
+                        <td mat-cell *matCellDef="let trade">
+                            <span class="flex items-center">
+                                <span class="leading-4">{{trade._quantity}}</span>
+                            </span>
+                        </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="buyPrice">
+                        <th mat-header-cell *matHeaderCellDef>
+                            Order Price
+                        </th>
+                        <td mat-cell *matCellDef="let trade">
+                            <span class="flex items-center">
+                                <span class="leading-4">{{trade._price}}</span>
+                            </span>
+                        </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="status">
+                        <th mat-header-cell *matHeaderCellDef>
+                            Status
+                        </th>
+                        <td mat-cell *matCellDef="let trade">
+                            <span class="flex items-center">
+                                <span class="leading-4">{{trade._status}}</span>
+                            </span>
+                        </td>
+                    </ng-container>
+<!-- 
+                    <ng-container matColumnDef="entryPrice">
+                        <th mat-header-cell *matHeaderCellDef>
+                            Entry Price
+                        </th>
+                        <td mat-cell *matCellDef="let trade">
+                            <span class="font-medium text-right">
+                                {{trade.entryPrice | currency:'INR'}}
+                            </span>
+                        </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="stoploss">
+                        <th mat-header-cell *matHeaderCellDef>
+                            Stoploss
+                        </th>
+                        <td mat-cell *matCellDef="let trade">
+                            <span class="font-medium text-right">
+                                {{trade.stoploss | currency:'INR'}}
+                            </span>
+                        </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="targetPrice">
+                        <th mat-header-cell *matHeaderCellDef>
+                            Sell Price
+                        </th>
+                        <td mat-cell *matCellDef="let trade">
+                            <span class="font-medium text-right">
+                                {{trade.targetPrice | currency:'INR'}}
+                            </span>
+                        </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="quantity">
+                        <th mat-header-cell *matHeaderCellDef>
+                            Quantity
+                        </th>
+                        <td mat-cell *matCellDef="let trade">
+                            <span class="font-medium text-right">
+                                {{trade.quantity}}
+                            </span>
+                        </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="riskReward">
+                        <th mat-header-cell *matHeaderCellDef>
+                            Risk:Reward
+                        </th>
+                        <td mat-cell *matCellDef="let trade">
+                            <span class="font-medium text-right">
+                                {{trade.riskReward}}
+                            </span>
+                        </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="profitNloss">
+                        <th mat-header-cell *matHeaderCellDef>
+                            Profit/Loss
+                        </th>
+                        <td mat-cell *matCellDef="let trade">
+                            <span class="font-medium text-right">
+                                {{trade.profitNloss || '-'}}
+                            </span>
+                        </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="status">
+                        <th mat-header-cell *matHeaderCellDef>
+                            Status
+                        </th>
+                        <td mat-cell *matCellDef="let trade">
+                            <span class="flex items-center" *ngIf="trade.status == 'CANCEL_ORDER'">
+                                <span class="inline-flex items-center font-bold text-xs px-2.5 py-0.5 rounded-full tracking-wide uppercase bg-gray-200 text-gray-800 dark:bg-gray-600 dark:text-gray-50">
+                                    <span class="leading-relaxed whitespace-nowrap">Cancelled</span>
+                                </span>
+                            </span>
+
+                            <span class="flex items-center" *ngIf="trade.status == 'OPEN'">
+                                <span class="inline-flex items-center font-bold text-xs px-2.5 py-0.5 rounded-full tracking-wide uppercase bg-primary-200 text-primary-800 dark:bg-primary-600 dark:text-gray-50">
+                                    <span class="leading-relaxed whitespace-nowrap">Open</span>
+                                </span>
+                            </span>
+
+                            <span class="flex items-center" *ngIf="trade.status == 'TARGET_HIT'">
+                                <span class="inline-flex items-center font-bold text-xs px-2.5 py-0.5 rounded-full tracking-wide uppercase bg-green-200 text-green-800 dark:bg-green-600 dark:text-gray-50">
+                                    <span class="leading-relaxed whitespace-nowrap">Target Hit</span>
+                                </span>
+                            </span>
+
+                            <span class="flex items-center" *ngIf="trade.status == 'STOPLOSS_HIT'">
+                                <span class="inline-flex items-center font-bold text-xs px-2.5 py-0.5 rounded-full tracking-wide uppercase bg-red-200 text-red-800 dark:bg-red-600 dark:text-gray-50">
+                                    <span class="leading-relaxed whitespace-nowrap">Stoploss Hit</span>
+                                </span>
+                            </span>
+
+                            <span class="flex items-center" *ngIf="trade.status == 'EXECUTED'">
+                                <span class="inline-flex items-center font-bold text-xs px-2.5 py-0.5 rounded-full tracking-wide uppercase bg-yellow-200 text-yellow-800 dark:bg-yellow-600 dark:text-gray-50">
+                                    <span class="leading-relaxed whitespace-nowrap">Executed</span>
+                                </span>
+                            </span>
+
+                            
+                        </td>
+                    </ng-container>
+-->
+                    <ng-container matColumnDef="action" stickyEnd>
+                        <th mat-header-cell *matHeaderCellDef aria-label="row actions">&nbsp;</th>
+                        <td mat-cell *matCellDef="let trade; let i = index">
+                            <button mat-icon-button [matMenuTriggerFor]="tradeActions" [disabled]=" trade.status == 'TARGET_HIT' || trade.status == 'STOPLOSS_HIT' || trade.status == 'CANCEL_ORDER' ">
+                                <span class="relative">
+
+                                    <mat-icon [svgIcon]="'heroicons_outline:dots-vertical'"></mat-icon>
+                                </span>
+                            </button>
+                            <mat-menu [xPosition]="'before'" #tradeActions="matMenu">
+
+                                <button mat-menu-item (click)="updateTradeStatus('MODIFY', trade)">
+                                    <span>Modify order</span>
+                                </button>
+
+                                <button mat-menu-item (click)="updateTradeStatus('SELL_ORDER', trade)">
+                                    <span>Place sell order</span>
+                                </button>
+                                <!-- <button mat-menu-item (click)="updateTradeStatus('TARGET_HIT', trade)">
+                                    <span>Target Hit</span>
+                                </button>
+                                <button mat-menu-item  (click)="updateTradeStatus('STOPLOSS_HIT', trade)">
+                                    <span>Stoploss Hit</span>
+                                </button> -->
+                                <button mat-menu-item  (click)="updateTradeStatus('CANCEL_ORDER', trade)">
+                                    <span>Cancel order</span>
+                                </button><!-- 
+                                <button mat-menu-item  (click)="delete(i)">
+                                    <span>Delete From Ledger</span>
+                                </button> -->
+                                
+                            </mat-menu>
+                        </td>
+                    </ng-container> 
+
+                    <tr mat-header-row *matHeaderRowDef="trades.columns" ></tr>
+                    <tr mat-row *matRowDef="let row; columns: trades.columns;" [class.buy]='row._transaction_type == "BUY"' [class.sell]='row._transaction_type == "SELL"'></tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

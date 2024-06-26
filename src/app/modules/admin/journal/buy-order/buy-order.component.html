@@ -1,0 +1,110 @@
+<form [formGroup]="buyOrderForm" class="flex flex-col" novalidate name="buyOrderForm">
+
+    <div class="flex flex-col">
+
+        <!-- <mat-divider class=" mb-3"></mat-divider> -->
+        <!-- <div class="flex">
+            <mat-form-field class="flex-auto">
+                <mat-label>Script Name</mat-label>
+                <input matInput name="scriptName" required formControlName="scriptName">
+                <mat-icon class="icon-size-5" matPrefix [svgIcon]="'heroicons_solid:information-circle'"></mat-icon>
+            </mat-form-field>
+        </div> -->
+        <div class="flex flex-col gt-xs:flex-row">
+            <mat-form-field [ngClass]="formFieldHelpers" class="flex-auto">
+                <mat-label>Entry Price</mat-label>
+                <input class="text-right" name="entryPrice" type="number" required
+                    formControlName="entryPrice" matInput>
+                <span matPrefix>₹</span>
+                <span matSuffix>.00</span>
+            </mat-form-field>
+        </div>
+        <div class="flex flex-col gt-xs:flex-row">
+            <mat-form-field [ngClass]="formFieldHelpers" class="flex-auto">
+                <mat-label>Stoploss Price</mat-label>
+                <input class="text-right" name="stoploss" type="number" required
+                    formControlName="stoploss" matInput>
+                <span matPrefix>₹</span>
+                <span matSuffix>.00</span>
+            </mat-form-field>
+        </div>
+        <div class="flex flex-col gt-xs:flex-row">
+            <mat-form-field [ngClass]="formFieldHelpers" class="flex-auto">
+                <mat-label>Target Price</mat-label>
+                <input class="text-right" name="targetPrice" type="number" formControlName="targetPrice"
+                    matInput>
+                <span matPrefix>₹</span>
+                <span matSuffix>.00</span>
+                <!-- <mat-hint *ngIf="buyOrderForm.get('quantity').value > 0">Minimum target is
+                    {{buyOrderForm.get('entryPrice').value + (buyOrderForm.get('entryPrice').value
+                    - buyOrderForm.get('stoploss').value)* 2}}</mat-hint> -->
+                <mat-hint>Minimum target is
+                    {{buyOrderForm.get('suggestedTarget').value}}</mat-hint>
+            </mat-form-field>
+        </div>
+        <div class="flex flex-col gt-xs:flex-row">
+            <mat-form-field [ngClass]="formFieldHelpers" class="flex-auto" readonly>
+                <mat-label>Quantity</mat-label>
+                <input class="text-right" name="quantity" type="number" formControlName="quantity" readonly
+                    matInput>
+            </mat-form-field>
+        </div>
+    </div>
+    <ng-container *ngIf="buyOrderForm.valid">
+        <div class="flex flex-row flex-wrap mb-4">
+            <div class="flex flex-col flex-auto">
+                <div class="text-sm font-medium leading-none text-secondary">Max Profit</div>
+                <div class="mt-2 font-medium text-3xl leading-none">
+                    {{(buyOrderForm.get('maxProfit').value | currency:'INR') || '-'}}</div>
+            </div>
+            <div class="flex flex-col flex-auto">
+                <div class="text-sm font-medium leading-none text-secondary">Max Loss</div>
+                <div class="mt-2 font-medium text-3xl leading-none">{{(buyOrderForm.get('maxLoss').value
+                    | currency:'INR') || '-'}}</div>
+            </div>
+        </div>
+
+        <div class="flex flex-row flex-wrap mb-2">
+            <div class="flex flex-col flex-auto">
+                <div class="text-sm font-medium leading-none text-secondary">Risk Reward</div>
+                <div class="mt-2 font-medium text-3xl leading-none">
+                    {{(buyOrderForm.get('riskReward').value) || '-'}}</div>
+            </div>
+        </div>
+
+        <div class="flex flex-row flex-wrap" *ngIf="isGoodTrade && buyOrderForm.get('riskReward').value">
+            <div
+                class="flex flex-col mb-1 flex-auto bg-green-50 text-green-800 dark:bg-white dark:bg-opacity-5 dark:text-green-500 items-center justify-center py-8">
+                <div class="text-5xl sm:text-7xl font-semibold leading-none tracking-tight"> Good Trade
+                </div>
+                <div class="mt-1 text-sm text-center sm:text-lg font-medium">Risk:Reward is
+                    {{buyOrderForm.get('riskReward').value}}</div>
+            </div>
+        </div>
+
+        <div class="flex flex-row flex-wrap"
+            *ngIf="!isGoodTrade && buyOrderForm.get('riskReward').value">
+            <div
+                class="flex flex-col mb-1 flex-auto bg-red-50 text-red-800 dark:bg-white dark:bg-opacity-5 dark:text-red-500 items-center justify-center py-8">
+                <div class="text-5xl sm:text-7xl font-semibold leading-none tracking-tight"> Bad Trade
+                </div>
+                <div class="mt-1 text-sm text-center sm:text-lg font-medium">Risk is morethan 1% of capital
+                    (or) Reward is lessthan 2 times of risk.</div>
+            </div>
+        </div>
+    </ng-container>
+    
+
+    <div class="flex items-center justify-center mt-5">
+        <button mat-button>
+            Reset
+        </button> <!--[disabled]="!buyOrderForm.valid || !isGoodTrade"-->
+        <!-- <button class="px-6 ml-3" mat-flat-button (click)="analyse();" [color]="'primary'">
+            Add to Ledger
+        </button> -->
+        <button class="px-6 ml-3" mat-flat-button (click)="buyOrderForm.get('tradeId').value ? modifyOrder() : placeOrder();" [disabled]="!buyOrderForm.valid || !isGoodTrade " [color]="'primary'">
+            {{buyOrderForm.get('tradeId').value ? 'Modify order' : 'Place order'}}
+        </button>
+    </div>
+
+</form>

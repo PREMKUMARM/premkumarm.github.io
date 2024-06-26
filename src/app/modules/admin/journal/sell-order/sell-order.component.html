@@ -1,0 +1,31 @@
+<form [formGroup]="sellOrderForm" class="flex flex-col" novalidate name="sellOrderForm">
+    <div class="flex flex-col">
+
+        <div class="flex flex-col gt-xs:flex-row">
+            <mat-form-field [ngClass]="formFieldHelpers" class="flex-auto">
+                <mat-label>Sell Price</mat-label>
+                <input class="text-right" name="entryPrice" type="number" required formControlName="sellPrice"
+                    matInput>
+                <span matPrefix>₹</span>
+                <span matSuffix>.00</span>
+            </mat-form-field>
+        </div>
+
+        <div class="flex flex-col gt-xs:flex-row">
+            <mat-form-field [ngClass]="formFieldHelpers" class="flex-auto">
+                <mat-label>Quantity</mat-label>
+                <input class="text-right" name="quantity" type="number" required formControlName="quantity"
+                    matInput>
+            </mat-form-field>
+        </div>
+    </div>
+
+    <div class="flex items-center justify-center mt-5">
+        <button mat-button>
+            Reset
+        </button>
+        <button class="px-6 ml-3" mat-flat-button [color]="'primary'" (click)="placeSellOrder()">
+            Place Sell Order
+        </button>
+    </div>
+</form>

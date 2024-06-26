@@ -1,0 +1,263 @@
+<div class="flex flex-col flex-auto w-full">
+
+    <div class="flex flex-wrap w-full mx-auto p-6 md:p-8">
+
+        <div class="flex items-center justify-between w-full">
+            <div>
+                <h2 class="text-3xl font-semibold tracking-tight leading-8">Investments dashboard</h2>
+                <div class="font-medium tracking-tight text-secondary">Keep track of investments status</div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 xl:grid-cols-2 gap-8 w-full mt-8">
+            <div class="grid gap-8 sm:grid-flow-col xl:grid-flow-row">
+                <div class="relative flex flex-col flex-auto p-6 pr-3 pb-3 bg-card rounded-2xl shadow overflow-hidden">
+                    <div class="absolute bottom-0 right-0 w-24 h-24 -m-6">
+                        <mat-icon class="icon-size-24 opacity-25 text-green-500 dark:text-green-400"
+                            [svgIcon]="'heroicons_outline:check-circle'"></mat-icon>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="flex flex-col">
+                            <div class="text-lg font-medium tracking-tight leading-6 truncate">Team Investment</div>
+                            <div class="text-green-600 font-medium text-sm">
+                                {{activeTeamInvestmentMenu.date || 'Overall till date'}}
+                            </div>
+                            <!-- <div class="flex items-baseline justify-center w-full mt-2 text-secondary">
+                                <div class="text-md font-medium truncate">Gross PnL:</div>
+                                <div class="ml-1.5 text-lg font-semibold">{{activeTeamInvestmentMenu.metadata.grosspnl  | currency:'INR'}}</div>
+                                 &nbsp; | &nbsp;
+                                <div class="text-md font-medium truncate">Charges & Tax:</div>
+                                <div class="ml-1.5 text-lg font-semibold">{{activeTeamInvestmentMenu.metadata.tax  | currency:'INR'}}</div>
+                            </div> -->
+                        </div>
+                        <div class="ml-auto -mt-2">
+                            <button mat-icon-button [matMenuTriggerFor]="teamInvestment">
+                                <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:dots-vertical'"></mat-icon>
+                            </button>
+                            <mat-menu #teamInvestment="matMenu">
+                                <button mat-menu-item (click)="onMenuItemSelect('teamInvestment', 'overall')">
+                                    <span class="flex items-center">
+                                        <span>Overall Info</span>
+                                    </span>
+                                </button>
+                                <mat-divider class="my-2"></mat-divider>
+                                <button mat-menu-item (click)="onMenuItemSelect('teamInvestment', 'day1')">
+                                    <span class="flex items-center">
+                                        <span>Day 1 (18-Dec-2023)</span>
+                                    </span>
+                                </button>
+
+                                <button mat-menu-item (click)="onMenuItemSelect('teamInvestment', 'day2')">
+                                    <span class="flex items-center">
+                                        <span>Day 2 (19-Dec-2023)</span>
+                                    </span>
+                                </button>
+
+                                <button mat-menu-item (click)="onMenuItemSelect('teamInvestment', 'day3')">
+                                    <span class="flex items-center">
+                                        <span>Day 3 (20-Dec-2023)</span>
+                                    </span>
+                                </button>
+
+                                <button mat-menu-item (click)="onMenuItemSelect('teamInvestment', 'day4')">
+                                    <span class="flex items-center">
+                                        <span>Day 4 (21-Dec-2023)</span>
+                                    </span>
+                                </button>
+
+                                <button mat-menu-item (click)="onMenuItemSelect('teamInvestment', 'day5')">
+                                    <span class="flex items-center">
+                                        <span>Day 5 (22-Dec-2023)</span>
+                                    </span>
+                                </button>
+
+                                <button mat-menu-item (click)="onMenuItemSelect('teamInvestment', 'day6')">
+                                    <span class="flex items-center">
+                                        <span>Day 6 (26-Dec-2023)</span>
+                                    </span>
+                                </button>
+
+                                <button mat-menu-item (click)="onMenuItemSelect('teamInvestment', 'day7')">
+                                    <span class="flex items-center">
+                                        <span>Day 7 (27-Dec-2023)</span>
+                                    </span>
+                                </button>
+                            </mat-menu>
+                        </div>
+                    </div>
+                    <div class="flex flex-row flex-wrap mt-4 -mx-6">
+                        <div class="flex flex-col mx-6 my-3">
+                            <div class="text-sm font-medium leading-none text-secondary">Investment</div>
+                            <div class="mt-2 font-medium text-3xl leading-none">
+                                {{activeTeamInvestmentMenu.totalInvestment | currency:'INR'}}</div>
+                        </div>
+                        <div class="flex flex-col mx-6 my-3">
+                            <div class="text-sm font-medium leading-none text-secondary">Current Value</div>
+                            <div class="mt-2 font-medium text-3xl leading-none">{{activeTeamInvestmentMenu.currentValue
+                                | currency:'INR'}}</div>
+                        </div>
+                        <div class="flex flex-col mx-6 my-3">
+                            <div class="text-sm font-medium leading-none text-secondary">Profit</div>
+                            <div class="mt-2 font-medium text-3xl leading-none">{{activeTeamInvestmentMenu.profit |
+                                currency:'INR'}}</div>
+                        </div>
+                        <div class="flex flex-col mx-6 my-3">
+                            <div class="text-sm font-medium leading-none text-secondary">Loss</div>
+                            <div class="mt-2 font-medium text-3xl leading-none">{{activeTeamInvestmentMenu.loss |
+                                currency:'INR'}}</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+        <div class="w-full mt-6">
+            <div class="text-2xl font-semibold tracking-tight leading-6">Investors</div>
+            <div class="font-medium tracking-tight text-secondary">Profits and Loss divided between investors based on
+                their investment percentage on total investments</div>
+        </div>
+        <div *ngFor="let tm of teamMembers" class="grid grid-cols-1 xl:grid-cols-2 gap-8 w-full mt-8">
+            <div class="grid gap-8 sm:grid-flow-col xl:grid-flow-row">
+                <div class="relative flex flex-col flex-auto p-6 pr-3 pb-3 bg-card rounded-2xl shadow overflow-hidden">
+                    <div class="absolute top-0 right-0 w-24 h-24 -m-6">
+                        <mat-icon class="icon-size-24  text-green-500 dark:text-green-400"
+                            [svgIcon]="'heroicons_outline:check-circle'">
+                            <span
+                                class="bg-green-200 text-green-800 dark:bg-green-600 dark:text-green-50 inline-flex items-center font-bold text-xs px-2.5 py-0.5 -mt-5 mr-10 rounded-full tracking-wide uppercase">
+                                <span class="leading-relaxed whitespace-nowrap">{{shareAllocations[tm.uid]}}% share </span>
+                            </span>
+                        </mat-icon>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="flex flex-col">
+                            <div class="text-lg font-medium tracking-tight leading-6 truncate">{{tm.name}}
+
+                            </div>
+                            <div class="text-green-600 font-medium text-sm">
+                                {{tm.activeMenu ? tm.activeMenu.date : 'Overall till date'}}
+                            </div>
+
+                        </div>
+                        <div class="ml-auto -mt-2">
+
+                            <button mat-icon-button [matMenuTriggerFor]="previousStatementMenu">
+                                <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:dots-vertical'"></mat-icon>
+                            </button>
+
+                            <mat-menu #previousStatementMenu="matMenu">
+                                <button mat-menu-item (click)="onMenuItemSelect('teamMember', 'overall', tm)">
+                                    <span class="flex items-center">
+                                        <span>Overall Info</span>
+                                    </span>
+                                </button>
+                                <mat-divider class="my-2"></mat-divider>
+                                <button mat-menu-item (click)="onMenuItemSelect('teamMember', 'day1', tm)">
+                                    <span class="flex items-center">
+                                        <span>Day 1 (18-Dec-2023)</span>
+                                    </span>
+                                </button>
+
+                                <button mat-menu-item (click)="onMenuItemSelect('teamMember', 'day2', tm)">
+                                    <span class="flex items-center">
+                                        <span>Day 2 (19-Dec-2023)</span>
+                                    </span>
+                                </button>
+
+                                <button mat-menu-item (click)="onMenuItemSelect('teamMember', 'day3', tm)">
+                                    <span class="flex items-center">
+                                        <span>Day 3 (20-Dec-2023)</span>
+                                    </span>
+                                </button>
+
+                                <button mat-menu-item (click)="onMenuItemSelect('teamMember', 'day4', tm)">
+                                    <span class="flex items-center">
+                                        <span>Day 4 (21-Dec-2023)</span>
+                                    </span>
+                                </button>
+
+                                <button mat-menu-item (click)="onMenuItemSelect('teamMember', 'day5', tm)">
+                                    <span class="flex items-center">
+                                        <span>Day 5 (22-Dec-2023)</span>
+                                    </span>
+                                </button>
+
+                                <button mat-menu-item (click)="onMenuItemSelect('teamMember', 'day6', tm)">
+                                    <span class="flex items-center">
+                                        <span>Day 6 (26-Dec-2023)</span>
+                                    </span>
+                                </button>
+
+                                <button mat-menu-item (click)="onMenuItemSelect('teamMember', 'day7', tm)">
+                                    <span class="flex items-center">
+                                        <span>Day 7 (27-Dec-2023)</span>
+                                    </span>
+                                </button>
+
+                            </mat-menu>
+                        </div>
+                    </div>
+                    <div class="flex flex-row flex-wrap mt-4 -mx-6">
+                        <div class="flex flex-col mx-6 my-3">
+                            <div class="text-sm font-medium leading-none text-secondary">Investment</div>
+                            <div class="mt-2 font-medium text-3xl leading-none">{{(tm.activeMenu ? tm.activeMenu.totalInvestment : tm.ledger.overall.totalInvestment) |
+                                currency:'INR'}}</div>
+                        </div>
+                        <div class="flex flex-col mx-6 my-3">
+                            <div class="text-sm font-medium leading-none text-secondary">Current Value</div>
+                            <div class="mt-2 font-medium text-3xl leading-none">{{(tm.activeMenu ? tm.activeMenu.currentValue : tm.ledger.overall.currentValue) |
+                                currency:'INR'}}</div>
+                        </div>
+                        <div class="flex flex-col mx-6 my-3">
+                            <div class="text-sm font-medium leading-none text-secondary">Profit</div>
+                            <div class="mt-2 font-medium text-3xl leading-none">{{(tm.activeMenu ? tm.activeMenu.profit : tm.ledger.overall.profit) |
+                                currency:'INR'}}</div>
+                        </div>
+                        <div class="flex flex-col mx-6 my-3">
+                            <div class="text-sm font-medium leading-none text-secondary">Loss</div>
+                            <div class="mt-2 font-medium text-3xl leading-none">{{(tm.activeMenu ? tm.activeMenu.loss : tm.ledger.overall.loss) | currency:'INR'}}
+                            </div>
+                        </div>
+                        <div class="flex flex-col mx-6 my-3" *ngIf="tm.activeMenu && tm.activeMenu.withdrawal">
+                            <div class="text-sm font-medium leading-none text-secondary">Withrawal</div>
+                            <div class="mt-2 font-medium text-3xl leading-none">{{(tm.activeMenu ? tm.activeMenu.withdrawal : tm.ledger.overall.withdrawal) | currency:'INR'}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="w-full mt-6">
+            <div class="font-medium tracking-tight italic text-secondary">Note: After charges & tax deductions, 75% of
+                day profit will be shared to all investors based on their investment percentage. Remaining 25% will be
+                taken by trader.</div>
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<div class="flex flex-col flex-auto min-w-0 p-6" *ngIf="false">
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 w-full h-full min-w-0 flex-auto">
+
+        <div
+            class="sm:col-span-4 md:col-span-4 lg:col-span-4 flex flex-col flex-auto overflow-hidden bg-card shadow rounded-2xl overflow-hidden p-6 flex flex-auto">
+            <div class="sm:col-span-6 flex flex-col flex-auto overflow-hidden"
+                *ngIf="data.budgetDetails.rows.length > 0">
+                <div class="text-lg font-medium tracking-tight leading-6 truncate">Investments</div>
+                <div class="flex flex-col flex-auto mt-2 overflow-x-auto">
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+</div>
