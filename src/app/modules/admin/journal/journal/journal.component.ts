@@ -267,6 +267,9 @@ export class JournalComponent implements OnInit {
         this.activeTradeForm.markAsUntouched();
         this.activeTradeForm.markAsPristine();
         this.activeTradeForm.updateValueAndValidity();
+        Object.keys(this.activeTradeForm.controls).forEach(key => {
+            this.activeTradeForm.controls[key].setErrors(null)
+        });
         
     }
     /*
