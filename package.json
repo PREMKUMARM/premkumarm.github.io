@@ -8,8 +8,8 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --base-href /premkumarm/ --configuration production",
-    "watch": "ng build --base-href /premkumarm/ --watch --configuration development",
+    "build": "ng build --configuration production",
+    "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "lint": "ng lint"
   },
