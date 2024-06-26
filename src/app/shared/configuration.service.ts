@@ -5,8 +5,8 @@ import { Injectable } from '@angular/core';
 })
 export class ConfigurationService {
 
-  totalFunds: number = 200000;
-  availableFund: number = 200000;
+  totalFunds: number = 300000;
+  availableFund: number = 300000;
   usedFunds: number = 0;
   riskPercentage: number = 1;
   rewardPercentage: number = 2;

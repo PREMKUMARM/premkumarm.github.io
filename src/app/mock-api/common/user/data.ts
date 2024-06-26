@@ -4,5 +4,8 @@ export const user = {
     name  : 'Admin',
     email : 'admin@tradehandler.com',
     avatar: 'assets/images/avatars/admin-pic.jpg',
-    status: 'online'
+    status: 'online',
+    fund: 300000,
+    risk: 1,
+    reward: 2
 };

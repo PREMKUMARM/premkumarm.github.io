@@ -5,4 +5,7 @@ export interface User
     email: string;
     avatar?: string;
     status?: string;
+    fund?: number;
+    risk?: number;
+    reward?: number;
 }

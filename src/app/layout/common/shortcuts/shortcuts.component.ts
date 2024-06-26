@@ -7,6 +7,8 @@ import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { Shortcut } from 'app/layout/common/shortcuts/shortcuts.types';
 import { ShortcutsService } from 'app/layout/common/shortcuts/shortcuts.service';
+import { UserService } from 'app/core/user/user.service';
+import { User } from 'app/core/user/user.types';
 
 @Component({
     selector       : 'shortcuts',
@@ -25,6 +27,7 @@ export class ShortcutsComponent implements OnInit, OnDestroy
     shortcuts: Shortcut[];
     private _overlayRef: OverlayRef;
     private _unsubscribeAll: Subject<any> = new Subject<any>();
+    user: User;
 
     /**
      * Constructor
@@ -34,7 +37,8 @@ export class ShortcutsComponent implements OnInit, OnDestroy
         private _formBuilder: FormBuilder,
         private _shortcutsService: ShortcutsService,
         private _overlay: Overlay,
-        private _viewContainerRef: ViewContainerRef
+        private _viewContainerRef: ViewContainerRef,
+        private _userService: UserService
     )
     {
     }
@@ -48,6 +52,16 @@ export class ShortcutsComponent implements OnInit, OnDestroy
      */
     ngOnInit(): void
     {
+
+        this._userService.user$
+        .pipe(takeUntil(this._unsubscribeAll))
+        .subscribe((user: User) => {
+            this.user = user;
+
+            // Mark for check
+            this._changeDetectorRef.markForCheck();
+        });
+
         // Initialize the form
         this.shortcutForm = this._formBuilder.group({
             id         : [null],
