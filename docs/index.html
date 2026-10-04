@@ -3,25 +3,356 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Hello</title>
+  <title>Premkumar M — Software Engineer</title>
+  <meta name="description" content="Premkumar M is a software engineer in Bengaluru with 11 years of experience, from Bsol Systems and a technical lead role at Zycus to senior engineering at Cisco.">
+  <meta property="og:title" content="Premkumar M — Software Engineer">
+  <meta property="og:description" content="Software engineer in Bengaluru with 11 years of experience. Senior Software Engineer at Cisco.">
+  <meta property="og:url" content="https://premkumarm.github.io/">
   <style>
+    :root {
+      --ink: #1c1917;
+      --muted: #57534e;
+      --line: #e7e5e4;
+      --paper: #fafaf9;
+      --card: #ffffff;
+      --accent: #0f766e;
+      --draft: #9a3412;
+      --draft-bg: #fff7ed;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
     body {
       margin: 0;
-      min-height: 100vh;
-      display: grid;
-      place-items: center;
-      font-family: system-ui, sans-serif;
-      background: #f8fafc;
-      color: #0f172a;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+      font-size: 1.05rem;
+      line-height: 1.55;
     }
+
+    a {
+      color: var(--accent);
+      text-decoration-thickness: 1px;
+      text-underline-offset: 0.18em;
+    }
+
+    a:hover { text-decoration-thickness: 2px; }
+
+    .wrap {
+      width: min(42rem, calc(100% - 2rem));
+      margin: 0 auto;
+      padding: 3.5rem 0 4.5rem;
+    }
+
+    header { margin-bottom: 2.25rem; }
+
+    .kicker {
+      margin: 0 0 0.4rem;
+      color: var(--accent);
+      font-family: ui-sans-serif, system-ui, sans-serif;
+      font-size: 0.78rem;
+      font-weight: 650;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
     h1 {
       margin: 0;
-      font-size: 3rem;
+      font-size: clamp(2.4rem, 7vw, 3.4rem);
       font-weight: 600;
+      letter-spacing: -0.03em;
+      line-height: 1.05;
+    }
+
+    .role {
+      margin: 0.7rem 0 0;
+      font-size: 1.2rem;
+    }
+
+    .meta {
+      margin: 0.35rem 0 0;
+      color: var(--muted);
+      font-family: ui-sans-serif, system-ui, sans-serif;
+      font-size: 0.95rem;
+    }
+
+    .links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem 1.25rem;
+      margin: 1.1rem 0 0;
+      padding: 0;
+      list-style: none;
+      font-family: ui-sans-serif, system-ui, sans-serif;
+      font-size: 0.95rem;
+    }
+
+    .note {
+      margin: 1.25rem 0 0;
+      color: var(--muted);
+      font-family: ui-sans-serif, system-ui, sans-serif;
+      font-size: 0.82rem;
+    }
+
+    section { margin-top: 2.4rem; }
+
+    h2 {
+      margin: 0 0 0.9rem;
+      padding-bottom: 0.35rem;
+      border-bottom: 1px solid var(--line);
+      font-family: ui-sans-serif, system-ui, sans-serif;
+      font-size: 0.78rem;
+      font-weight: 650;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    p { margin: 0.7rem 0 0; }
+
+    p:first-of-type { margin-top: 0; }
+
+    .job {
+      margin: 0 0 1.35rem;
+      padding: 0;
+    }
+
+    .job header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 0.15rem 1rem;
+      margin: 0 0 0.35rem;
+    }
+
+    .job h3 {
+      margin: 0;
+      font-size: 1.15rem;
+      font-weight: 600;
+    }
+
+    .when {
+      margin: 0;
+      color: var(--muted);
+      font-family: ui-sans-serif, system-ui, sans-serif;
+      font-size: 0.88rem;
+    }
+
+    .where {
+      margin: 0 0 0.45rem;
+      color: var(--muted);
+      font-family: ui-sans-serif, system-ui, sans-serif;
+      font-size: 0.92rem;
+    }
+
+    ul {
+      margin: 0.35rem 0 0;
+      padding-left: 1.15rem;
+    }
+
+    li { margin: 0.35rem 0; }
+
+    li .draft { margin-left: 0.35rem; }
+
+    .groups {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .group h3 {
+      margin: 0 0 0.45rem;
+      font-family: ui-sans-serif, system-ui, sans-serif;
+      font-size: 0.95rem;
+      font-weight: 650;
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .chips li {
+      margin: 0;
+      padding: 0.2rem 0.55rem;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--card);
+      font-family: ui-sans-serif, system-ui, sans-serif;
+      font-size: 0.86rem;
+    }
+
+    .draft {
+      display: inline-block;
+      margin-left: 0.4rem;
+      padding: 0.05rem 0.35rem;
+      border-radius: 0.25rem;
+      background: var(--draft-bg);
+      color: var(--draft);
+      font-family: ui-sans-serif, system-ui, sans-serif;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      line-height: 1.4;
+      text-transform: uppercase;
+      vertical-align: 0.15em;
+    }
+
+    .project {
+      padding: 0.9rem 1rem;
+      border: 1px solid var(--line);
+      border-radius: 0.6rem;
+      background: var(--card);
+    }
+
+    .project h3 {
+      margin: 0;
+      font-size: 1.1rem;
+    }
+
+    footer {
+      margin-top: 2.8rem;
+      color: var(--muted);
+      font-family: ui-sans-serif, system-ui, sans-serif;
+      font-size: 0.85rem;
+    }
+
+    @media (max-width: 640px) {
+      .wrap { padding-top: 2.25rem; }
+      .job header { display: block; }
+    }
+
+    @media print {
+      body { background: white; font-size: 11pt; }
+      .wrap { width: auto; padding: 0; }
+      a { color: inherit; text-decoration: none; }
+      .project, .chips li { background: white; }
+      .draft { border: 1px solid var(--draft); }
     }
   </style>
 </head>
 <body>
-  <h1>Hello</h1>
+  <main class="wrap">
+    <header>
+      <p class="kicker">Virtual resume</p>
+      <h1>Premkumar M</h1>
+      <p class="role">Software Engineer, 11 years</p>
+      <p class="meta">Bengaluru, India</p>
+      <ul class="links">
+        <li><a href="https://www.linkedin.com/in/premkumar-m-a77ab79a/">LinkedIn</a></li>
+        <li><a href="https://github.com/PREMKUMARM">GitHub</a></li>
+      </ul>
+      <p class="note">Lines marked Draft are working text to confirm or replace. They are not settled claims.</p>
+    </header>
+
+    <section aria-labelledby="summary-heading">
+      <h2 id="summary-heading">Summary</h2>
+      <p>Software engineer with 11 years of experience shipping web software, including a technical lead role at Zycus and senior engineering at Cisco.</p>
+      <p>I use applied AI in engineering work: prompting models, checking what they return, and keeping the useful parts in the software.<span class="draft">Draft</span></p>
+    </section>
+
+    <section aria-labelledby="skills-heading">
+      <h2 id="skills-heading">Skills</h2>
+      <div class="groups">
+        <div class="group">
+          <h3>Web</h3>
+          <ul class="chips">
+            <li>JavaScript</li>
+            <li>HTML5</li>
+            <li>CSS</li>
+            <li>Bootstrap</li>
+            <li>AngularJS</li>
+            <li>Node.js</li>
+            <li>Express</li>
+          </ul>
+        </div>
+        <div class="group">
+          <h3>Applied AI <span class="draft">Draft</span></h3>
+          <ul class="chips">
+            <li>Applied AI</li>
+            <li>Prompting</li>
+            <li>Evaluation</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="experience-heading">
+      <h2 id="experience-heading">Experience</h2>
+
+      <article class="job">
+        <header>
+          <h3>Senior Software Engineer</h3>
+          <p class="when"><time datetime="2021-02">Feb 2021</time> – Present</p>
+        </header>
+        <p class="where">Cisco · Bengaluru</p>
+        <ul>
+          <li>Senior engineer on Cisco product software.<span class="draft">Draft</span></li>
+          <li>Build and maintain web interfaces with JavaScript, HTML, and CSS.<span class="draft">Draft</span></li>
+          <li>Ship production changes with other engineers.<span class="draft">Draft</span></li>
+        </ul>
+      </article>
+
+      <article class="job">
+        <header>
+          <h3>Technical Lead</h3>
+          <p class="when"><time datetime="2018-07">Jul 2018</time> – <time datetime="2021-02">Feb 2021</time></p>
+        </header>
+        <p class="where">Zycus · Bengaluru</p>
+        <ul>
+          <li>Technical lead for web software in Zycus source-to-pay products.<span class="draft">Draft</span></li>
+          <li>Guided frontend delivery for procurement workflows.<span class="draft">Draft</span></li>
+          <li>Worked with AngularJS, Bootstrap, and Node.js on product features.<span class="draft">Draft</span></li>
+        </ul>
+      </article>
+
+      <article class="job">
+        <header>
+          <h3>Software Engineer</h3>
+          <p class="when"><time datetime="2015-08">Aug 2015</time> – <time datetime="2018-07">Jul 2018</time></p>
+        </header>
+        <p class="where">Bsol Systems · Bengaluru</p>
+        <ul>
+          <li>Software engineer on web products for maritime operations.<span class="draft">Draft</span></li>
+          <li>Built application features for a product company serving shipping businesses.<span class="draft">Draft</span></li>
+          <li>Worked across HTML, CSS, JavaScript, and Node.js.<span class="draft">Draft</span></li>
+        </ul>
+      </article>
+    </section>
+
+    <section aria-labelledby="work-heading">
+      <h2 id="work-heading">Selected work</h2>
+      <article class="project">
+        <h3>Trade Handler <span class="draft">Draft</span></h3>
+        <p>Personal Angular and Firebase app for placing and reviewing trades. Covers buy, sell, and order changes, plus rule-based market checks using RSI, Bollinger Bands, and the opening range.</p>
+      </article>
+    </section>
+
+    <section aria-labelledby="education-heading">
+      <h2 id="education-heading">Education and certification</h2>
+      <article class="job">
+        <header>
+          <h3>Bachelor’s, Information Technology</h3>
+          <p class="when"><time datetime="2011">2011</time> – <time datetime="2015">2015</time></p>
+        </header>
+        <p class="where">Mailam Engineering College · Villupuram · First class</p>
+      </article>
+      <article class="job">
+        <header>
+          <h3>HTML, CSS, JavaScript, Bootstrap</h3>
+        </header>
+        <p class="where">TestDome</p>
+      </article>
+    </section>
+
+    <footer>
+      <a href="https://premkumarm.github.io/">premkumarm.github.io</a>
+    </footer>
+  </main>
 </body>
 </html>
