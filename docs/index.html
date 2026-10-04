@@ -204,7 +204,8 @@
     }
 
     @media print {
-      @page { size: A4; margin: 0; }
+      @page { size: A4; margin: 16mm 0 12mm; }
+      @page :first { margin-top: 0; }
       .toolbar { display: none; }
       body { background: white; font-size: 13px; }
       .sheet { box-shadow: none; width: auto; }
