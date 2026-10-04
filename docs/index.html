@@ -16,8 +16,6 @@
       --paper: #fafaf9;
       --card: #ffffff;
       --accent: #0f766e;
-      --draft: #9a3412;
-      --draft-bg: #fff7ed;
     }
 
     * { box-sizing: border-box; }
@@ -90,13 +88,6 @@
       font-size: 0.95rem;
     }
 
-    .note {
-      margin: 1.25rem 0 0;
-      color: var(--muted);
-      font-family: ui-sans-serif, system-ui, sans-serif;
-      font-size: 0.82rem;
-    }
-
     section { margin-top: 2.4rem; }
 
     h2 {
@@ -154,8 +145,6 @@
 
     li { margin: 0.35rem 0; }
 
-    li .draft { margin-left: 0.35rem; }
-
     .groups {
       display: grid;
       gap: 1rem;
@@ -187,22 +176,6 @@
       font-size: 0.86rem;
     }
 
-    .draft {
-      display: inline-block;
-      margin-left: 0.4rem;
-      padding: 0.05rem 0.35rem;
-      border-radius: 0.25rem;
-      background: var(--draft-bg);
-      color: var(--draft);
-      font-family: ui-sans-serif, system-ui, sans-serif;
-      font-size: 0.68rem;
-      font-weight: 700;
-      letter-spacing: 0.06em;
-      line-height: 1.4;
-      text-transform: uppercase;
-      vertical-align: 0.15em;
-    }
-
     .project {
       padding: 0.9rem 1rem;
       border: 1px solid var(--line);
@@ -210,9 +183,20 @@
       background: var(--card);
     }
 
+    .project + .project { margin-top: 0.75rem; }
+
     .project h3 {
       margin: 0;
       font-size: 1.1rem;
+    }
+
+    .project h3 a { color: inherit; }
+
+    .stack {
+      margin: 0.25rem 0 0;
+      color: var(--muted);
+      font-family: ui-sans-serif, system-ui, sans-serif;
+      font-size: 0.82rem;
     }
 
     footer {
@@ -232,7 +216,6 @@
       .wrap { width: auto; padding: 0; }
       a { color: inherit; text-decoration: none; }
       .project, .chips li { background: white; }
-      .draft { border: 1px solid var(--draft); }
     }
   </style>
 </head>
@@ -247,13 +230,11 @@
         <li><a href="https://www.linkedin.com/in/premkumar-m-a77ab79a/">LinkedIn</a></li>
         <li><a href="https://github.com/PREMKUMARM">GitHub</a></li>
       </ul>
-      <p class="note">Lines marked Draft are working text to confirm or replace. They are not settled claims.</p>
     </header>
 
     <section aria-labelledby="summary-heading">
       <h2 id="summary-heading">Summary</h2>
       <p>Software engineer with 11 years of experience shipping web software, including a technical lead role at Zycus and senior engineering at Cisco.</p>
-      <p>I use applied AI in engineering work: prompting models, checking what they return, and keeping the useful parts in the software.<span class="draft">Draft</span></p>
     </section>
 
     <section aria-labelledby="skills-heading">
@@ -271,14 +252,6 @@
             <li>Express</li>
           </ul>
         </div>
-        <div class="group">
-          <h3>Applied AI <span class="draft">Draft</span></h3>
-          <ul class="chips">
-            <li>Applied AI</li>
-            <li>Prompting</li>
-            <li>Evaluation</li>
-          </ul>
-        </div>
       </div>
     </section>
 
@@ -292,9 +265,9 @@
         </header>
         <p class="where">Cisco · Bengaluru</p>
         <ul>
-          <li>Senior engineer on Cisco product software.<span class="draft">Draft</span></li>
-          <li>Build and maintain web interfaces with JavaScript, HTML, and CSS.<span class="draft">Draft</span></li>
-          <li>Ship production changes with other engineers.<span class="draft">Draft</span></li>
+          <li>Senior engineer on Cisco product software.</li>
+          <li>Build and maintain web interfaces with JavaScript, HTML, and CSS.</li>
+          <li>Ship production changes with other engineers.</li>
         </ul>
       </article>
 
@@ -305,9 +278,9 @@
         </header>
         <p class="where">Zycus · Bengaluru</p>
         <ul>
-          <li>Technical lead for web software in Zycus source-to-pay products.<span class="draft">Draft</span></li>
-          <li>Guided frontend delivery for procurement workflows.<span class="draft">Draft</span></li>
-          <li>Worked with AngularJS, Bootstrap, and Node.js on product features.<span class="draft">Draft</span></li>
+          <li>Technical lead for web software in Zycus source-to-pay products.</li>
+          <li>Guided frontend delivery for procurement workflows.</li>
+          <li>Worked with AngularJS, Bootstrap, and Node.js on product features.</li>
         </ul>
       </article>
 
@@ -318,9 +291,9 @@
         </header>
         <p class="where">Bsol Systems · Bengaluru</p>
         <ul>
-          <li>Software engineer on web products for maritime operations.<span class="draft">Draft</span></li>
-          <li>Built application features for a product company serving shipping businesses.<span class="draft">Draft</span></li>
-          <li>Worked across HTML, CSS, JavaScript, and Node.js.<span class="draft">Draft</span></li>
+          <li>Software engineer on web products for maritime operations.</li>
+          <li>Built application features for a product company serving shipping businesses.</li>
+          <li>Worked across HTML, CSS, JavaScript, and Node.js.</li>
         </ul>
       </article>
     </section>
@@ -328,8 +301,28 @@
     <section aria-labelledby="work-heading">
       <h2 id="work-heading">Selected work</h2>
       <article class="project">
-        <h3>Trade Handler <span class="draft">Draft</span></h3>
-        <p>Personal Angular and Firebase app for placing and reviewing trades. Covers buy, sell, and order changes, plus rule-based market checks using RSI, Bollinger Bands, and the opening range.</p>
+        <h3><a href="https://github.com/PREMKUMARM/puzzler">Puzzler</a></h3>
+        <p class="stack">Angular · TypeScript · Express</p>
+        <p>Grid puzzle game. Arrange the tiles in order to finish. Built with Angular 8 and served from a Node Express app, with Compodoc for the project docs.</p>
+      </article>
+      <article class="project">
+        <h3><a href="https://github.com/PREMKUMARM/SmartClinic">Smart Clinic</a></h3>
+        <p class="stack">Ionic · TypeScript</p>
+        <p>Frontend for a clinic app, built as an Ionic project.</p>
+      </article>
+      <article class="project">
+        <h3><a href="https://github.com/PREMKUMARM/100percent">100percent</a></h3>
+        <p class="stack">HTML</p>
+        <p>Web app aimed at a perfect score in Chrome’s performance audit, covering first contentful paint, speed index, and time to interactive.</p>
+      </article>
+      <article class="project">
+        <h3><a href="https://github.com/PREMKUMARM/webresume">Web Resume</a></h3>
+        <p class="stack">HTML</p>
+        <p>Web application for a professional resume.</p>
+      </article>
+      <article class="project">
+        <h3><a href="https://github.com/PREMKUMARM/expensecalculator">Expense Calculator</a></h3>
+        <p>Calculator for a room’s shared monthly expenses.</p>
       </article>
     </section>
 
