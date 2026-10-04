@@ -41,11 +41,21 @@
       grid-template-columns: 1fr 168px;
       gap: 1rem;
       align-items: center;
-      min-height: 210px;
-      padding: 2.1rem 2.4rem 3.4rem;
-      background: var(--blue);
-      clip-path: polygon(0 0, 100% 0, 100% 78%, 0 100%);
+      min-height: 230px;
+      padding: 2.1rem 2.4rem 3.2rem;
+      background: transparent;
     }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: var(--blue);
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 0 68%);
+      z-index: 0;
+    }
+
+    .hero > * { position: relative; z-index: 1; }
 
     h1 {
       margin: 0;
@@ -259,9 +269,9 @@
     @media (max-width: 800px) {
       .hero {
         grid-template-columns: 1fr;
-        clip-path: none;
         padding-bottom: 1.4rem;
       }
+      .hero::before { clip-path: none; }
       .portrait { justify-self: start; width: 120px; height: 120px; }
       .summary, .columns { padding-left: 1.15rem; padding-right: 1.15rem; }
       .columns { grid-template-columns: 1fr; }
