@@ -28,25 +28,31 @@
     }
 
     .toolbar {
-      width: min(820px, 100%);
-      margin: 0 auto;
-      padding: 0.85rem 0;
-      display: flex;
-      justify-content: flex-end;
+      position: fixed;
+      right: max(1.15rem, env(safe-area-inset-right));
+      bottom: max(1.15rem, env(safe-area-inset-bottom));
+      z-index: 10;
+      margin: 0;
+      padding: 0;
     }
 
     .download {
-      display: inline-block;
-      padding: 0.55rem 1rem;
-      border-radius: 999px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
       background: #1a1a1a;
       color: #fff;
-      font: 600 0.82rem Montserrat, ui-sans-serif, system-ui, sans-serif;
-      letter-spacing: 0.03em;
+      box-shadow: 0 8px 22px rgba(0, 0, 0, 0.22);
       text-decoration: none;
     }
 
     .download:hover { background: #333; }
+    .download:focus-visible { outline: 3px solid #1a1a1a; outline-offset: 3px; }
+
+    .download svg { display: block; }
 
     .sheet {
       width: min(820px, 100%);
@@ -108,7 +114,7 @@
       box-shadow: 0 0 0 6px #fff;
     }
 
-    .body { padding: 0.4rem 2.2rem 2.4rem; }
+    .body { padding: 0.4rem 2.2rem 4.8rem; }
 
     h2 {
       margin: 1.45rem 0 0.55rem;
@@ -198,7 +204,6 @@
     }
 
     @media (max-width: 640px) {
-      .toolbar { padding-left: 1.15rem; padding-right: 1.15rem; }
       .hero, .body { padding-left: 1.15rem; padding-right: 1.15rem; }
       .portrait { width: 88px; height: 88px; }
     }
@@ -222,7 +227,13 @@
 </head>
 <body>
   <div class="toolbar">
-    <a class="download" href="Prem-Kumar-M-Software-Engineer-AI.pdf" download="Prem-Kumar-M-Software-Engineer-AI.pdf">Download PDF</a>
+    <a class="download" href="Prem-Kumar-M-Software-Engineer-AI.pdf" download="Prem-Kumar-M-Software-Engineer-AI.pdf" aria-label="Download PDF">
+      <svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true">
+        <path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" d="M7 3.2h7.1L19 8v12.2H7z"/>
+        <path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" d="M14 3.2V8.2H19"/>
+        <text x="13" y="16.8" text-anchor="middle" font-size="5" font-family="Montserrat, sans-serif" font-weight="700" fill="currentColor">PDF</text>
+      </svg>
+    </a>
   </div>
   <article class="sheet">
     <header class="hero">
