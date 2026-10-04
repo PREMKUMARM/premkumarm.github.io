@@ -27,6 +27,27 @@
       line-height: 1.5;
     }
 
+    .toolbar {
+      width: min(820px, 100%);
+      margin: 0 auto;
+      padding: 0.85rem 0;
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .download {
+      display: inline-block;
+      padding: 0.55rem 1rem;
+      border-radius: 999px;
+      background: #1a1a1a;
+      color: #fff;
+      font: 600 0.82rem Montserrat, ui-sans-serif, system-ui, sans-serif;
+      letter-spacing: 0.03em;
+      text-decoration: none;
+    }
+
+    .download:hover { background: #333; }
+
     .sheet {
       width: min(820px, 100%);
       margin: 0 auto;
@@ -152,6 +173,11 @@
       font-weight: 700;
     }
 
+    .hero, .job, .edu, .skills > li, h2, h3 {
+      break-inside: avoid;
+      page-break-inside: avoid;
+    }
+
     .job { margin: 0 0 1.1rem; }
 
     .org, .when, .product, .tech {
@@ -172,18 +198,31 @@
     }
 
     @media (max-width: 640px) {
+      .toolbar { padding-left: 1.15rem; padding-right: 1.15rem; }
       .hero, .body { padding-left: 1.15rem; padding-right: 1.15rem; }
       .portrait { width: 88px; height: 88px; }
     }
 
     @media print {
-      body { background: white; }
+      @page { size: A4; margin: 0; }
+      .toolbar { display: none; }
+      body { background: white; font-size: 13px; }
       .sheet { box-shadow: none; width: auto; }
+      .hero { padding: 1.15rem 1.5rem 1rem; }
+      .body { padding: 0.2rem 1.5rem 1rem; }
+      h2 { margin: 0.85rem 0 0.35rem; }
+      .skills > li { padding: 0.32rem 0 0.38rem; }
+      .job { margin-bottom: 0.7rem; }
+      .edu { margin-bottom: 0.55rem; }
+      .links { break-inside: avoid; page-break-inside: avoid; }
       a { color: inherit; text-decoration: none; }
     }
   </style>
 </head>
 <body>
+  <div class="toolbar">
+    <a class="download" href="Prem-Kumar-Software-Engineer-AI.pdf" download="Prem-Kumar-Software-Engineer-AI.pdf">Download PDF</a>
+  </div>
   <article class="sheet">
     <header class="hero">
       <div>
