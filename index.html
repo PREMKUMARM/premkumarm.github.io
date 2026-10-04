@@ -100,14 +100,51 @@
 
     p { margin: 0.35rem 0 0; }
 
-    .skills, .plain, .links, .job ul, .achievements {
+    .plain, .links, .job ul, .achievements {
       margin: 0.35rem 0 0;
       padding-left: 1.15rem;
     }
 
-    .skills > li, .plain > li, .links > li, .job li, .achievements li { margin: 0.18rem 0; }
+    .plain > li, .links > li, .job li, .achievements li { margin: 0.18rem 0; }
 
-    .skills ul { margin: 0.1rem 0 0.15rem; padding-left: 1.1rem; }
+    .skills {
+      list-style: none;
+      margin: 0.7rem 0 0;
+      padding: 0;
+    }
+
+    .skills > li {
+      margin: 0;
+      padding: 0.7rem 0 0.75rem;
+      border-bottom: 1px solid #ececec;
+    }
+
+    .skills > li:first-child { padding-top: 0.2rem; }
+
+    .skill-cat {
+      margin: 0 0 0.4rem;
+      color: #3d4a63;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      line-height: 1.3;
+      text-transform: uppercase;
+    }
+
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+      margin: 0;
+    }
+
+    .skill-tags span {
+      padding: 0.18rem 0.55rem;
+      border-radius: 999px;
+      background: #eef3fc;
+      font-size: 0.8rem;
+      line-height: 1.35;
+    }
 
     h3 {
       margin: 0;
@@ -173,78 +210,120 @@
         <h2>Skills</h2>
         <ul class="skills">
           <li>
-            Artificial Intelligence
-            <ul>
-              <li>Artificial Intelligence (AI)</li>
-              <li>Generative AI</li>
-              <li>Large Language Models (LLMs)</li>
-              <li>Prompt Engineering</li>
-              <li>Retrieval-Augmented Generation (RAG)</li>
-              <li>AI Agents</li>
-              <li>Natural Language Processing (NLP)</li>
-              <li>Machine Learning</li>
-            </ul>
+            <p class="skill-cat">Artificial Intelligence</p>
+            <p class="skill-tags">
+              <span>Artificial Intelligence (AI)</span>
+              <span>Generative AI</span>
+              <span>Large Language Models (LLMs)</span>
+              <span>Prompt Engineering</span>
+              <span>Retrieval-Augmented Generation (RAG)</span>
+              <span>AI Agents</span>
+              <span>Natural Language Processing (NLP)</span>
+              <span>Machine Learning</span>
+            </p>
           </li>
           <li>
-            Frontend Development
-            <ul>
-              <li>HTML, CSS, JavaScript</li>
-              <li>TypeScript</li>
-              <li>AngularJS and Angular 2+</li>
-              <li>JSON, REST</li>
-            </ul>
+            <p class="skill-cat">Frontend Development</p>
+            <p class="skill-tags">
+              <span>HTML</span>
+              <span>CSS</span>
+              <span>JavaScript</span>
+              <span>TypeScript</span>
+              <span>AngularJS and Angular 2+</span>
+              <span>JSON</span>
+              <span>REST</span>
+            </p>
           </li>
           <li>
-            Design Framework
-            <ul><li>Bootstrap, Material Design</li></ul>
+            <p class="skill-cat">Design Framework</p>
+            <p class="skill-tags">
+              <span>Bootstrap</span>
+              <span>Material Design</span>
+            </p>
           </li>
           <li>
-            Backend Development
-            <ul><li>Node.js, Python, Java</li></ul>
+            <p class="skill-cat">Backend Development</p>
+            <p class="skill-tags">
+              <span>Node.js</span>
+              <span>Python</span>
+              <span>Java</span>
+            </p>
           </li>
           <li>
-            Database
-            <ul><li>Oracle, Firebase, MySQL</li></ul>
+            <p class="skill-cat">Database</p>
+            <p class="skill-tags">
+              <span>Oracle</span>
+              <span>Firebase</span>
+              <span>MySQL</span>
+            </p>
           </li>
           <li>
-            Code Versioning
-            <ul><li>GitHub, Bitbucket</li></ul>
+            <p class="skill-cat">Code Versioning</p>
+            <p class="skill-tags">
+              <span>GitHub</span>
+              <span>Bitbucket</span>
+            </p>
           </li>
           <li>
-            CI/CD
-            <ul><li>Jenkins, GitHub Actions</li></ul>
+            <p class="skill-cat">CI/CD</p>
+            <p class="skill-tags">
+              <span>Jenkins</span>
+              <span>GitHub Actions</span>
+            </p>
           </li>
           <li>
-            Domain Management and Hosting
-            <ul><li>AWS Route 53, Firebase Hosting, Heroku, Google Cloud, GitHub Pages</li></ul>
+            <p class="skill-cat">Domain Management and Hosting</p>
+            <p class="skill-tags">
+              <span>AWS Route 53</span>
+              <span>Firebase Hosting</span>
+              <span>Heroku</span>
+              <span>Google Cloud</span>
+              <span>GitHub Pages</span>
+            </p>
           </li>
           <li>
-            Automated Testing
-            <ul><li>Selenium, Jasmine, pyATS</li></ul>
+            <p class="skill-cat">Automated Testing</p>
+            <p class="skill-tags">
+              <span>Selenium</span>
+              <span>Jasmine</span>
+              <span>pyATS</span>
+            </p>
           </li>
           <li>
-            Package Managers
-            <ul><li>NPM, Gulp</li></ul>
+            <p class="skill-cat">Package Managers</p>
+            <p class="skill-tags">
+              <span>NPM</span>
+              <span>Gulp</span>
+            </p>
           </li>
           <li>
-            Reports Framework
-            <ul><li>Jasper Reports</li></ul>
+            <p class="skill-cat">Reports Framework</p>
+            <p class="skill-tags"><span>Jasper Reports</span></p>
           </li>
           <li>
-            Design Tools
-            <ul><li>Adobe XD, Figma</li></ul>
+            <p class="skill-cat">Design Tools</p>
+            <p class="skill-tags">
+              <span>Adobe XD</span>
+              <span>Figma</span>
+            </p>
           </li>
           <li>
-            Dev Tools and Editors
-            <ul><li>VS Code, Eclipse, Postman, JIRA, Confluence</li></ul>
+            <p class="skill-cat">Dev Tools and Editors</p>
+            <p class="skill-tags">
+              <span>VS Code</span>
+              <span>Eclipse</span>
+              <span>Postman</span>
+              <span>JIRA</span>
+              <span>Confluence</span>
+            </p>
           </li>
           <li>
-            Mobile Application Frameworks
-            <ul><li>Ionic Framework v5</li></ul>
+            <p class="skill-cat">Mobile Application Frameworks</p>
+            <p class="skill-tags"><span>Ionic Framework v5</span></p>
           </li>
           <li>
-            Cloud Web Services
-            <ul><li>Amazon Web Services (AWS)</li></ul>
+            <p class="skill-cat">Cloud Web Services</p>
+            <p class="skill-tags"><span>Amazon Web Services (AWS)</span></p>
           </li>
         </ul>
       </section>
